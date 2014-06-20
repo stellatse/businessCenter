@@ -1,0 +1,15 @@
+/__init__.pyc
+/application.pyc
+/browser.pyc
+/db.pyc
+/debugerror.pyc
+/form.pyc
+/http.pyc
+/httpserver.pyc
+/net.pyc
+/session.pyc
+/template.pyc
+/utils.pyc
+/webapi.pyc
+/webopenid.pyc
+/wsgi.pyc

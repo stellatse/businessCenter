@@ -1,0 +1,169 @@
+	  #container {
+		width: 100%;
+		min-width:1000px;
+		margin:0 auto;
+	  }
+	  
+	  #header { width:100%;height:44px; line-height:40px; background:url(../img/header_bg.png) repeat-x;}
+	  
+	  .main_l { width: 340px; top:44px; left:2px;border-right:1px solid #ccc;height:100%;}
+	  .main_r {position:absolute; right:0;left:340px;}
+	  .main {
+		height: 100%;
+	  }
+	  
+	  .route{
+		width: 340px!important;
+		height: 100%;
+		top:44px;
+        left:2px;
+		position: absolute;
+		overflow: auto;
+      }
+
+	  #route-wrap{
+		padding-top: 5px;
+		padding-bottom: 5px;
+		TEXT-ALIGN: center;
+		border-bottom: 1px solid #C0C0C0;
+		position: relative;
+	  }
+	  
+	  #route-wrap #bkBtn {
+		position: absolute;
+		left: 0px;
+	  }
+	  
+      .gmap3{
+        border: 1px solid #C0C0C0;
+		width: 100%;
+        height: 100%;
+		padding: 0px;
+		margin: 0px;
+		position: relative;
+		min-width:650px;
+      }
+
+      .box{
+        border:1px solid #FF0000; 
+        background-color: #AFAFAF; 
+        width:160px;
+        height: 64;
+        font-size: 11px;
+      }
+      
+      .box .line{
+        border-bottom: 1px solid #FF0000;
+        overflow: auto;
+        clear: both;
+        height: 16px;
+      }
+      .box #lng-west{
+        border-bottom: 0px;
+      }
+      
+      .box .name{
+        width: 40px;
+        border-right: 1px solid #FF0000;
+        float:left;
+      }
+      .box .value{
+        float:left;
+      }
+	  
+      #sight-info{
+        border:1px solid; 
+        background-color: #fff; 
+        width:560px;
+        font-size: 14px;
+		height: 100%;
+		opacity: 0.9;
+		position: relative;
+      }
+	  
+	  #sight-info #name {
+		font-size: 20px;
+		margin-left: 10px;
+	  }
+	  #sight-info #name-en {
+		font-size: 14px;
+		margin-left: 10px;
+		color: lightgray;
+	  }
+	  #sight-info #pic {
+		padding:10px;
+	  }
+	  
+	  #sight-info #close {
+		position: absolute;
+		left:533px;
+		top: 0px;
+	  }
+	  
+	  #sight-pic {
+		float: left;
+	  }
+	  #sight-name {
+		float: left
+	  }
+	  #sight-desc {
+		clear: both;
+	  }
+	  #close-sight {
+		float: left;
+	  }
+	  
+	  #sight-detail{
+        margin-top: 10px;
+		margin-bottom: 10px;
+		padding: 5px;
+		background-color: lightgray; 
+        font-size: 14px;
+      }
+	  
+	  .sight-item {
+		margin: 5px;
+
+	  }
+	  
+	  
+	  // Classes
+	.center-block {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  font-size: 14px;
+	}
+	
+	.day {
+		width: 60px;
+	}
+    
+    .dine {
+        width:90px;
+    }
+	
+	.sight{
+		width: 200px;
+	}
+	
+      .labels {
+       color: white;
+       background-color: #47a447;
+       font-family: "Lucida Grande", "Arial", sans-serif;
+       font-size: 14px;
+       text-align: center;
+       width: 100px;     
+       border: 0;
+       white-space: nowrap;
+       border-radius: 8px;
+       border-color:#398439;
+     }
+	 
+	 #next , #prev{
+		padding: 20px;
+	 }
+	 
+	 #back {
+		float: left;
+	 }
