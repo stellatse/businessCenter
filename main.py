@@ -103,6 +103,8 @@ class shop:
     def POST(self):
         name, info = web.input().name, web.input().info
         Shop().addShop(name, info, session.id)
+        return render.shop()
+
 
 if __name__ == "__main__":
     app.run()
