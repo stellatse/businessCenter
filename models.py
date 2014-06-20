@@ -41,12 +41,9 @@ class User:
 
 
 class Shop:
-    def __init__(self, name, owner):
-        self.name = name
-        self.owner = owner
         
-    def addShop(self):
-        db.shops.insert({"name": self.name, "owner":self.owner, "status":"Ready"})
+    def addShop(self, name, info, owner):
+        db.shops.insert({"name": name, "owner":owner, "status":"Ready"})
         
     def getShop(self, name):
         shop = db.shops.find_one({"name":name})

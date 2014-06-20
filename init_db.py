@@ -27,10 +27,10 @@ db.counters.insert({'_id': "userid",
 
 
 #db.users.ensureIndex( { "name": 1 } )
-print("init users")
+print("init users, first 2 users, one is admin, another is sales, password is empty")
 db.users.insert([
-                 {"_id": DataBase().getNextSequence("userid"),"name": "stella", "pwd":"d41d8cd98f00b204e9800998ecf8427e", "type": 1},
-                 {"_id": DataBase().getNextSequence("userid"),"name": "sales", "pwd":"d41d8cd98f00b204e9800998ecf8427e", "type": 2}
+                 {"_id": DataBase().getNextSequence("userid"),"name": "stella", "pwd":"d41d8cd98f00b204e9800998ecf8427e", "type": 1, "phone": "13810101011", "address":"上海虹口"},
+                 {"_id": DataBase().getNextSequence("userid"),"name": "sales", "pwd":"d41d8cd98f00b204e9800998ecf8427e", "type": 2, "phone": "13810101022", "address":"上海浦东"}
                  ])
 
 print("init items")
@@ -44,4 +44,5 @@ db.items.insert([
                  {"name": "面膜5", "quantity": "105", "cost": "10"},
                  {"name": "面膜6", "quantity": "107", "cost": "10"},
                  ])
+
 

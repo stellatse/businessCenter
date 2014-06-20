@@ -1,7 +1,8 @@
 ﻿$def with (msg,users)
-<h1 class="page-header">注册新用户</h1>
+<h1 class="page-header">用户管理</h1>
 
 <div class="row">
+    <h2 class="sub-header">注册新用户</h2>
     <form role="form" action="/signup" method=POST>
       <div class="form-group">
         <label for="exampleInputEmail1">用户名</label>
@@ -28,8 +29,10 @@
     <tr>
       <th>编号</th>
       <th>用户名</th>
+      <th>电话</th>
+      <th>地址</th>
       <th>用户类型</th>
-      <th>状态</th>
+      <th>操作</th>
     </tr>
   </thead>
   <tbody>
@@ -38,13 +41,14 @@ $for u in users:
     <tr>
       <td>$u['_id']</td>
       <td>$u['name']</td>
-      
+      <td>$u['phone']</td>
+      <td>$u['address']</td>
       $if u['type'] == 1:
           <td>系统管理员</td>
       $else:
           <td>代理</td>
       
-      <td>status</td>
+      <td><a href="">查看</a></td>
     </tr>
 </tbody>
 </table>
