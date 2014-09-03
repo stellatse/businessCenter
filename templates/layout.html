@@ -32,9 +32,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">主页</a></li>
+            <li><a href="/">主页</a></li>
             <li><a href="#">站内信</a></li>
-            <li><a href="#">帮助</a></li>
+            <li><a href="/help">帮助</a></li>
             <li><a href="/logout">退出</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -56,6 +56,7 @@ $else:
 $if context.admin == True:
     <ul class="nav nav-sidebar">
     <li><a href="/signup">用户管理</a></li>
+    <li><a href="/stock">库存管理</a></li>
     </ul>
     <ul class="nav nav-sidebar">
     <li><a href="#">审核订单</a></li>
@@ -78,6 +79,7 @@ $:content
     <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/docs.min.js"></script>
+    <script src="/static/js/stock.js"></script>
 
 
 </body>

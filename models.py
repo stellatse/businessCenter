@@ -14,15 +14,15 @@ db = DataBase().db
 
 
 class User:
-    
     def add(self, name, pwd, user_type):
         pwdhash = hashlib.md5(pwd).hexdigest()
-        db.users.insert([{"_id":DataBase().getNextSequence("userid"),"name":name, "pwd":pwdhash, "type":user_type}])
-    
+        db.users.insert(
+            [{"_id": DataBase().getNextSequence("userid"), "name": name, "pwd": pwdhash, "type": user_type}])
+
     def get(self, name):
         user = db.users.find_one({"name": name})
         return user
-    
+
     def getAll(self):
         ret = []
         users = db.users.find()
@@ -34,19 +34,40 @@ class User:
         pwdhash = hashlib.md5(password).hexdigest()
         user = db.users.find_one({"name": name, "pwd": pwdhash})
         print pwdhash
-        if user == None:
+        if user is None:
             return 0
         else:
             return user['type']
 
 
 class Shop:
-        
-    def addShop(self, name, info, owner):
-        db.shops.insert({"name": name, "owner":owner, "status":"Ready"})
-        
-    def getShop(self, name):
-        shop = db.shops.find_one({"name":name})
+    @staticmethod
+    def add_shop(name, info, owner):
+        db.shops.insert({"name": name, "owner": owner, "status": "Ready"})
+
+    @staticmethod
+    def get_shop(name):
+        shop = db.shops.find_one({"name": name})
         return shop
-    
-        
+
+
+class Item:
+    def getAll(self):
+        ret = []
+        items = db.items.find()
+        for item in items:
+            ret.append(item)
+        return ret
+
+
+class Stock:
+    def getAll(self):
+        ret = []
+        stocks = db.stocks.find()
+        for stock in stocks:
+            ret.append(stock)
+        return ret
+
+    def get_default(self, user_id):
+        ret = db.stocks.find_one({'_id': 1})['name']
+        return ret

@@ -1,0 +1,113 @@
+$def with (cur_stock,items)
+<h2 class="page-header">库存管理</h2>
+
+<h2 class="sub-header">当前仓库 - $:cur_stock</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>货号</th>
+        <th>名称</th>
+        <th>数量</th>
+        <th>单价</th>
+        <th>最近更新</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+  $for item in items:
+      <tr>
+        <td>$item['number']</td>
+        <td>$item['name']</td>
+        <td>$item['quantity']</td>
+        <td>$item['cost']</td>
+        <td>$item['update_user']于$item['update_time'] <a>历史记录</a></td>
+        <td><button type="button" class="btn btn-info stockOut" data-toggle="popover" title="出库">出库</button>
+        <button type="button" class="btn btn-warning stockIn" data-toggle="modal" data-target="#stockIn">入库</button>
+        <button type="button" class="btn btn-danger stockIn" data-toggle="modal" data-target="#stockTrans">转存</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="stockIn">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">入库操作</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>入库数量</label>
+                <input type="text" placeholder="数量">
+            </div>
+            <div class="form-group">
+                <label>来源</label>
+                <select class="form-control">
+                  <option>采购</option>
+                  <option>退货</option>
+                  <option>代理商</option>
+                  <option>其他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>入库备注</label>
+                <input type="text" placeholder="备注">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade" id="stockTrans">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">准存操作</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>转存数量</label>
+                <input type="text" placeholder="数量">
+            </div>
+            <div class="form-group">
+                <label>转存至仓库</label>
+                <select class="form-control">
+                  <option>上海仓库</option>
+                  <option>北京仓库</option>
+                  <option>南京仓库</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label>转存类型</label>
+                <select class="form-control">
+                  <option>加工</option>
+                  <option>分销</option>
+                  <option>其他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>转存备注</label>
+                <input type="text" placeholder="备注">
+
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

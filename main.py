@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import web
-from models import User, Shop
+from models import User, Shop, Item, Stock
 import util
 import os
 import sys
@@ -9,9 +9,10 @@ import sys
 urls = (
     "/signin", "signin",
     "/", "index",
-    "/signup","signup",
+    "/signup", "signup",
     "/logout", "logout",
-    "/shop", "shop"
+    "/shop", "shop",
+    "/stock", "stock"
 )
 
 app = web.application(urls, globals())
@@ -21,26 +22,29 @@ if web.config.get('_session') is None:
     web.config._session = session
 else:
     session = web.config._session
-    
-#render = web.template.render('templates/', globals={'context': session})
+
+# render = web.template.render('templates/', globals={'context': session})
 curdir = os.path.abspath(os.path.dirname(__file__))
 templates = curdir + '/templates/'
 render_plain = web.template.render(templates, globals={'context': session})
 render = web.template.render(templates, base='layout', globals={'context': session})
-    
+
+
 def logged():
     if 'login' not in session or session.login == 0:
         session.login = 0
         return False
     else:
         return True
-    
+
+
 class signin:
     def GET(self):
         if logged():
             return web.seeother('/')
         else:
             return render_plain.signin()
+
     def POST(self):
         name, passwd = web.input().username, web.input().password
         user_type = User().validate_user(name, passwd)
@@ -52,15 +56,16 @@ class signin:
                 session.admin = True
             else:
                 session.admin = False
-            return web.seeother('/') 
+            return web.seeother('/')
         else:
             return render_plain.signin("用户名不存在，或密码错误")
+
 
 class signup:
     def GET(self):
         users = User().getAll()
-        return render.signup("",users)
-    
+        return render.signup("", users)
+
     def POST(self):
         try:
             name, passwd = web.input().name, web.input().password
@@ -72,20 +77,21 @@ class signup:
             User().add(name, passwd, user_type)
         except Exception, e:
             users = User().getAll()
-            return render.signup("Error, please try again",users)
+            return render.signup("Error, please try again", users)
         else:
             raise web.seeother('/signup')
-    
+
 
 class index:
     def GET(self):
         if logged():
-            if session.admin==True:
+            if session.admin == True:
                 return render.admin_index()
             else:
                 return render.index()
         else:
             return web.seeother('/signin')
+
 
 class logout:
     def GET(self):
@@ -97,13 +103,26 @@ class logout:
 
 class shop:
     def GET(self):
-        
         return render.shop()
-    
+
     def POST(self):
         name, info = web.input().name, web.input().info
-        Shop().addShop(name, info, session.id)
+        Shop().add_shop(name, info, session.id)
         return render.shop()
+
+
+class stock:
+    @classmethod
+    def get_default_stock(cls, user_id):
+        return Stock().get_default(user_id)
+
+    def GET(self):
+        items = Item().getAll()
+        cur_stock = self.get_default_stock(session.id)
+        return render.stock(cur_stock, items)
+
+    def POST(self):
+        return render.stock()
 
 
 if __name__ == "__main__":
